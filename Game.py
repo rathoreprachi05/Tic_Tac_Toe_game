@@ -40,3 +40,5 @@ while(quit == False):
            list[2][0] == list[1][1] == list[0][2] == p_symbol) :
             print("Yay! You won!")
             ask = input("Do you want to play the game again or do you want to exit?")
+
+#----
