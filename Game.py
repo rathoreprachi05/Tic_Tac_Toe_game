@@ -9,8 +9,6 @@ quit = False
 
 while(quit == False):
 
-    
-
     list = [[" "," "," "], [" "," "," "], [" "," "," "]]
 
     accept = False
