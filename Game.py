@@ -7,6 +7,7 @@ def print_board(list):
 
 quit = False
 
+
 while(quit == False):
 
     list = [[" "," "," "], [" "," "," "], [" "," "," "]]
