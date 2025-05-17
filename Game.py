@@ -5,6 +5,7 @@ def print_board(list):
     print("- + - + -")
     print(list[2][0], "|", list[2][1], "|", list[2][2])
 
+
 quit = False
 while(quit == False):
 
