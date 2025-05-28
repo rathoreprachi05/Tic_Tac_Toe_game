@@ -26,6 +26,8 @@ while(quit == False):
         else:
             c_symbol = 'x'
 
+
+    
     for i in range(1,5,1):
         user_moves()
         computer_moves()
