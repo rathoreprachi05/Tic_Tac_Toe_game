@@ -17,3 +17,19 @@ A simple **Tic Tac Toe** game built with Python that runs in the terminal. It's 
 
 ## 📸 Game Preview
 
+```
+Enter row (0, 1, 2): 1
+Enter column (0, 1, 2): 0
+
+Your Move:
+
+   0   1   2
+ 0  X | O | O
+   -----------
+ 1  X | X | X
+   -----------
+ 2  O |   |  
+
+You win! :-D
+
+```
