@@ -1,45 +1,85 @@
-def print_board(list):
-    print(list[0][0], "|", list[0][1], "|", list[0][2])
-    print("- + - + -")
-    print(list[1][0], "|", list[1][1], "|", list[1][2])
-    print("- + - + -")
-    print(list[2][0], "|", list[2][1], "|", list[2][2])
+import random
+import time
 
-quit = False
-while(quit == False):
-    list = [[" "," "," "], [" "," "," "], [" "," "," "]]
+# Initialize board
+board = [[" " for _ in range(3)] for _ in range(3)]
 
-    accept = False
-    while(accept == False):
+# Function to display the board
+def display_board(board):
+    print("\n   0   1   2")
+    for i, row in enumerate(board):
+        print(f" {i}  {row[0]} | {row[1]} | {row[2]}")
+        if i < 2:
+            print("   -----------")
+    print()  # Extra newline for better readability
 
-        p_symbol = input("Choose your symbol('x', 'o'): ").lower()
+# Check for winner
+def check_winner(board, player):
+    # Rows, Columns, and Diagonals
+    for i in range(3):
+        if all(cell == player for cell in board[i]) or \
+           all(row[i] == player for row in board):
+            return True
+    if all(board[i][i] == player for i in range(3)) or \
+       all(board[i][2 - i] == player for i in range(3)):
+        return True
+    return False
 
-        if(symbol == 'x' or symbol =='o'):
-            accept = True
-        else:
-            print("Please enter either 'x' or 'o'")
+# Check if board is full
+def is_board_full(board):
+    return all(cell != " " for row in board for cell in row)
 
-        if(p_symbol == 'x'):
-            c_symbol = 'o'
-        else:
-            c_symbol = 'x'
+# Main game loop
+def play_game():
+    print("\nWelcome to Tic Tac Toe! Let's go :-)\n")
+    display_board(board)
 
+    while True:
+        # Player move
+        while True:
+            try:
+                row = int(input("Enter row (0, 1, 2): "))
+                col = int(input("Enter column (0, 1, 2): "))
+                if row in range(3) and col in range(3) and board[row][col] == " ":
+                    board[row][col] = "X"
+                    break
+                else:
+                    print("Invalid move. Try again.")
+            except ValueError:
+                print("Please enter numbers only.")
 
-    
-    for i in range(1,5,1):
-        user_moves()
-        computer_moves()
-        print_board(list)
+        print("\nYour Move:")
+        display_board(board)
 
-        if(list[0][0] == list[0][1] == list[0][2] == p_symbol or \
-           list[1][0] == list[1][1] == list[1][2] == p_symbol or \
-           list[2][0] == list[2][1] == list[2][2] == p_symbol or \
-           list[0][0] == list[1][0] == list[2][0] == p_symbol or \
-           list[0][1] == list[1][1] == list[2][1] == p_symbol or \
-           list[0][2] == list[1][2] == list[2][2] == p_symbol or \
-           list[0][0] == list[1][1] == list[2][2] == p_symbol or \
-           list[2][0] == list[1][1] == list[0][2] == p_symbol) :
-            print("Yay! You won!")
-            ask = input("Do you want to play the game again or do you want to exit?")
+        if check_winner(board, "X"):
+            print("You win! :-D")
+            break
+        if is_board_full(board):
+            print("It's a draw :-|")
+            break
 
-#------------------------------------------------------------------
+        # Computer move
+        print("Computer is thinking...\n")
+        time.sleep(1)  # Add a realistic pause
+
+        while True:
+            row = random.randint(0, 2)
+            col = random.randint(0, 2)
+            if board[row][col] == " ":
+                board[row][col] = "O"
+                break
+
+        print("Computer's Move:")
+        display_board(board)
+
+        if check_winner(board, "O"):
+            print("Computer wins! :-(")
+            break
+        if is_board_full(board):
+            print("It's a draw :-|")
+            break
+
+        print("-" * 30)  # Visual separator between rounds
+
+# Start the game
+play_game()
