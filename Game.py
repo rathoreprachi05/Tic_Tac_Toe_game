@@ -13,7 +13,6 @@ def display_board(board):
             print("   -----------")
     print()  # Extra newline for better readability
 
-
 # Check for winner
 def check_winner(board, player):
     # Rows, Columns, and Diagonals
